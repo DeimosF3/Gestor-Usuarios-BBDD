@@ -26,13 +26,6 @@ public class Nota {
     private Date fecha;
     private boolean completada = false;
 
-    public Nota(int id, String nombre, String descripcion, Date fecha) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-    }
-
     public int getId() {
         return id;
     }
