@@ -73,6 +73,18 @@ public class NotasController {
             Model model,
             @RequestParam int id
     ) {
+        try {
+            Nota nota = repo.findById(id).get();
+            model.addAttribute("nota", nota);
+            NotaDTO notaDTO = new NotaDTO();
+            notaDTO.setNombre(nota.getNombre());
+            notaDTO.setDescripcion(nota.getDescripcion());
+            model.addAttribute("notaDTO", notaDTO);
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+            return "redirect:/notas";
+        }
+
         return "notas/editarNota";
     }
 }

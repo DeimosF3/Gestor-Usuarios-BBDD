@@ -28,7 +28,7 @@
                       <td th:text="${nota.fecha.toString().substring(0, 10)}"></td>
                       <td style="white-space: nowrap">
                           <a class="btn btn-primary btn-sm"
-                             th:href="@{/notas/edit(id=${nota.id})}">Editar</a>
+                             th:href="@{/notas/editar(id=${nota.id})}">Editar</a>
                            <a class="btn btn-danger btn-sm"
                              th:href="@{/notas/delete(id=${nota.id})}"
                              onclick="return confirm('Estás seguro?')">Eliminar</a>
