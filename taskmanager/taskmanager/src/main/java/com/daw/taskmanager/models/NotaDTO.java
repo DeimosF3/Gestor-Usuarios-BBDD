@@ -12,6 +12,7 @@ import jakarta.validation.constraints.Size;
  * @author Rodrigo RL
  */
 public class NotaDTO {
+
     @NotEmpty(message = "Nombre obligatorio")
     private String nombre;
     @Size(min = 10, message = "La descripción debe tener al menos 10 caracteres")
@@ -33,5 +34,5 @@ public class NotaDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
 }

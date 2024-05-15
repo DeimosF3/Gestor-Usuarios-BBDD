@@ -8,6 +8,7 @@ import com.daw.taskmanager.models.Nota;
 import com.daw.taskmanager.models.NotaDTO;
 import com.daw.taskmanager.services.notasRepository;
 import jakarta.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -29,6 +31,7 @@ public class NotasController {
 
     @Autowired
     private notasRepository repo;
+    private Date fecha = new Date();
 
     @GetMapping({"", "/"})
     public String showNotasList(Model model) {
@@ -53,6 +56,23 @@ public class NotasController {
         if (result.hasErrors()) {
             return "notas/crearNota";
         }
+
+        Nota nota = new Nota();
+        nota.setNombre(NotaDTO.getNombre());
+        nota.setDescripcion(NotaDTO.getDescripcion());
+        nota.setFecha(fecha);
+        nota.isCompletada();
+
+        repo.save(nota);
+
         return "redirect:/notas";
+    }
+
+    @GetMapping("/editar")
+    public String enseñarEditarPagina(
+            Model model,
+            @RequestParam int id
+    ) {
+        return "notas/editarNota";
     }
 }
