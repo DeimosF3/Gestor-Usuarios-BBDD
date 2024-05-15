@@ -17,5 +17,21 @@ public class NotaDTO {
     @Size(min = 10, message = "La descripción debe tener al menos 10 caracteres")
     @Size(max = 2000, message = "La descripción no puede exceder de 2000 caracteres")
     private String descripcion;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
     
 }

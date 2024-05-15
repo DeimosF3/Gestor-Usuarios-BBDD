@@ -5,6 +5,7 @@
 package com.daw.taskmanager.controllers;
 
 import com.daw.taskmanager.models.Nota;
+import com.daw.taskmanager.models.NotaDTO;
 import com.daw.taskmanager.services.notasRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class NotasController {
         List<Nota> notas = repo.findAll();
         model.addAttribute("notas",notas);
         return "notas/index";
+    }
+    
+    @GetMapping({"/crear"})
+    public String showCreatePage(Model model) {
+        NotaDTO notaDTO = new NotaDTO();
+        model.addAttribute("notaDTO",notaDTO);
+        return "notas/crearNota"; // nombre del archivo html
     }
 }
