@@ -87,4 +87,43 @@ public class NotasController {
 
         return "notas/editarNota";
     }
+
+    @PostMapping("/editar")
+    public String updateProduct(
+            Model model,
+            @RequestParam int id,
+            @Valid @ModelAttribute NotaDTO notaDTO,
+            BindingResult result
+    ) {
+
+        try {
+            Nota nota = repo.findById(id).get();
+            model.addAttribute("nota", nota);
+            if (result.hasErrors()) {
+                return "notas/editarNota";
+            }
+            nota.setNombre(notaDTO.getNombre());
+            nota.setDescripcion(notaDTO.getDescripcion());
+            repo.save(nota);
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+
+        }
+        return "redirect:/notas";
+    }
+
+    @GetMapping("/eliminar")
+    public String eliminarProducto(
+            @RequestParam int id
+    ) {
+        try {
+            Nota nota = repo.findById(id).get();
+            // eliminar producto de la bd
+            repo.delete(nota);
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+
+        return "redirect:/notas";
+    }
 }
